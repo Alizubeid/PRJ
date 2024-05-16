@@ -10,7 +10,7 @@ class dbManager():
         self.cursor = self.connect.cursor()
         [self.cursor.execute(i) for i in q.CREATE_ALL_TABLE]
         self.connect.commit()
-        return
+        return self.cursor
 
     def __exit__(self, exc_type, exc_val, traceback):
         self.connect.commit()
