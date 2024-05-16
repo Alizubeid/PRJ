@@ -4,7 +4,7 @@ import queries as q
 
 class dbManager():
     def __init__(self):
-        self.connect = psycopg2.connect(config())
+        self.connect = psycopg2.connect(**config())
 
     def __enter__(self):
         self.cursor = self.connect.cursor()

@@ -18,7 +18,7 @@ CREATE_TABLE_TRANSACTION = """
 CREATE TABLE IF NOT EXISTS transaction (
     transaction_id SERIAL PRIMARY KEY,
     account_id INT,
-    transaction_type VARCHAR(10) CHECK('deposit','withdrawal','transfer'),
+    transaction_type VARCHAR(10) CHECK(transaction_type='deposit' OR transaction_type='withdrawal' OR transaction_type='transfer'),
     amount NUMERIC(10,2),
     timestamp TIMESTAMP
 )
@@ -28,7 +28,7 @@ CREATE_TABLE_ETC = """
 CREATE TABLE IF NOT EXISTS etc (
     id SERIAL PRIMARY KEY,
     user_id INT UNIQUE,
-    FOREIGEN KEY (user_id) REFERENCES users(user_id)
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
 )
 """
 
