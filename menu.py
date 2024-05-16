@@ -15,23 +15,22 @@ def clean():
     print(BANNER)
 
 
-def check_user(username,password):
+def check_user(username, password):
     with dbManager() as db:
-        query = "SELECT A.user_id,A.password,B.user_id FROM users AS A INNER JOIN etc AS B ON A.user_id = B.user_id WHERE A.username = '{}' AND A.password = '{}'".format(username,password)
-        db.execute(query)
+        db.execute("SELECT A.user_id,A.password,B.user_id FROM users AS A INNER JOIN etc AS B ON A.user_id = B.user_id WHERE A.username = '{}' AND A.password = '{}'".format(username, password))
         if db.fetchone():
             return True
-        
 
 
 def main():
     clean()
     username = input("USERNAME : ").lower()
     password = hashing(getpass("PASSWORD : "))
-    if check_user(username,password):
+    if check_user(username, password):
         pass
     else:
         pass
+
+
 if __name__ == "__main__":
     main()
-    

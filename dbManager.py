@@ -15,3 +15,6 @@ class dbManager():
     def __exit__(self, exc_type, exc_val, traceback):
         self.connect.commit()
         self.connect.close()
+
+with dbManager() as db:
+    pass
